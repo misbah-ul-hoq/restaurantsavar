@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.swiper-pagination {
-  top: 500px;
-}
 @layer utilities {
   .container-center {
     @apply mx-auto w-[94%] max-w-[1280px];

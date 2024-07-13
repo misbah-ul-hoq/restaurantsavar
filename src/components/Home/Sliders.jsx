@@ -13,10 +13,12 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper/modules";
+import SectionTitle from "./SectionTitle";
 
 export default function Sliders() {
   return (
-    <>
+    <div>
+      <SectionTitle subHeading="From 11am to 10pm" heading="order online" />
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
@@ -24,7 +26,7 @@ export default function Sliders() {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper mt-11"
       >
         <SwiperSlide>
           <img src={img1} alt="" />
@@ -42,6 +44,6 @@ export default function Sliders() {
           <img src={img5} alt="" />
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 }
