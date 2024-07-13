@@ -17,7 +17,7 @@ import SectionTitle from "./SectionTitle";
 
 export default function Sliders() {
   return (
-    <div>
+    <div className="container-center">
       <SectionTitle subHeading="From 11am to 10pm" heading="order online" />
       <Swiper
         slidesPerView={4}
@@ -25,8 +25,9 @@ export default function Sliders() {
         pagination={{
           clickable: true,
         }}
+        loop={true}
         modules={[Pagination]}
-        className="mySwiper mt-11"
+        className="mySwiper select-none"
       >
         <SwiperSlide>
           <img src={img1} alt="" />
