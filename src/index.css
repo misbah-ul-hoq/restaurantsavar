@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.navbar a.active {
+  color: #eeff25 !important;
+  background-color: inherit !important;
+}
 @layer utilities {
   .container-center {
     @apply mx-auto w-[94%] max-w-[1280px];
