@@ -1,6 +1,7 @@
 import Banner from "../components/Home/Banner";
 import MenuWrapper from "../components/Home/MenuWrapper";
 import Parallax from "../components/Home/Parallax";
+import Reviews from "../components/Home/Reviews";
 import Sliders from "../components/Home/Sliders";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
       <Sliders />
       <MenuWrapper />
       <Parallax />
+      <Reviews />
     </section>
   );
 };
