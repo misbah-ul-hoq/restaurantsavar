@@ -9,7 +9,7 @@ import img from "../assets/home/chef-service.jpg";
 
 const text =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere cupiditate, totam quaerat voluptate vitae obcaecati labore quae magnam. Consequuntur saepe corrupti repudiandae labore odio, perferendis sit eligendi mollitia nihil dicta?";
-const Home = () => {
+const HomePage = () => {
   useDocumentTitle("Restaurant | Home");
 
   return (
@@ -29,4 +29,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

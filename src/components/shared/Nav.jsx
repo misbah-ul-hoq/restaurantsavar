@@ -16,8 +16,8 @@ const Nav = () => {
       </li>
 
       <li>
-        <NavLink to="/contact" className="text-base font-extrabold uppercase">
-          Contact us
+        <NavLink to="/Order" className="text-base font-extrabold uppercase">
+          Order
         </NavLink>
       </li>
     </>
