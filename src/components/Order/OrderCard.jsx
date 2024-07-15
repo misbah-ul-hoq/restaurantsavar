@@ -1,21 +1,17 @@
 const OrderCard = ({ menuItem }) => {
   const { name, image, recipe, price } = menuItem;
   return (
-    <div className="m-4 max-w-sm overflow-hidden rounded shadow-lg">
-      <img
-        className="w-full"
-        src="https://via.placeholder.com/150"
-        alt="Caeser Salad"
-      />
+    <div className="relative m-4 max-w-sm overflow-hidden rounded shadow-lg">
+      <span className="absolute right-3 top-3 bg-neutral px-3 py-1 font-bold text-neutral-content">
+        ${price}
+      </span>
+      <img className="w-full max-w-[400px]" src={image} alt="Caeser Salad" />
       <div className="px-6 py-4">
-        <div className="mb-2 text-xl font-bold">Caeser Salad</div>
-        <p className="text-base text-gray-700">
-          Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.
-        </p>
+        <div className="mb-2 text-xl font-bold">{name}</div>
+        <p className="text-base text-gray-700">{recipe}</p>
       </div>
       <div className="flex items-center justify-between px-6 pb-2 pt-4">
-        <span className="text-gray-700">$14.5</span>
-        <button className="btn btn-outline hover:btn-primary">
+        <button className="btn border-0 border-b-2 border-[#BB8506] text-[#BB8506] hover:btn-neutral">
           ADD TO CART
         </button>
       </div>
