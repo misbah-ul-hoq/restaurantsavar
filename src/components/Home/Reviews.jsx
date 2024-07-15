@@ -13,13 +13,14 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
 import StarRating from "./StarRating";
+import api from "../../api/api";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("reviews.json")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
+    api.get("/reviews").then((res) => {
+      setReviews(res.data);
+    });
   }, []);
   return (
     <section className="reviews-wrapper mx-auto max-w-[1096px]">
