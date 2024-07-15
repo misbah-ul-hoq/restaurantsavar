@@ -2,7 +2,7 @@ import { useState } from "react";
 import useMenu from "../../hooks/useMenu";
 import OrderCard from "./OrderCard";
 
-const tabs = ["SALAD", "PIZZA", "SOUPS", "DESSERTS", "DRINKS"];
+const tabs = ["SALAD", "PIZZA", "SOUP", "DESSERT", "DRINKS"];
 const OrderTab = () => {
   const { menu } = useMenu();
   const [activeTab, setActiveTab] = useState(tabs[0]);
