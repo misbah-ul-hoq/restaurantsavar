@@ -5,6 +5,7 @@ import Reviews from "../components/Home/Reviews";
 import Sliders from "../components/Home/Sliders";
 import FeatureBanner from "../components/shared/FeatureBanner";
 import useDocumentTitle from "../hooks/useDocumentTitle";
+import img from "../assets/home/chef-service.jpg";
 
 const text =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere cupiditate, totam quaerat voluptate vitae obcaecati labore quae magnam. Consequuntur saepe corrupti repudiandae labore odio, perferendis sit eligendi mollitia nihil dicta?";
@@ -18,6 +19,7 @@ const Home = () => {
       <FeatureBanner
         title="best restaurant"
         description={text}
+        bgImg={img}
         bgProps="bg-white"
       />
       <MenuWrapper />
