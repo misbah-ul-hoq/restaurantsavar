@@ -20,6 +20,12 @@ const Nav = () => {
           Order
         </NavLink>
       </li>
+
+      <li>
+        <NavLink to="/login" className="text-base font-extrabold uppercase">
+          Login
+        </NavLink>
+      </li>
     </>
   );
   return (
