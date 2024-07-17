@@ -22,6 +22,14 @@ const LoginPage = () => {
     setDisabled(true);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const name = form.get("email");
+    const password = form.get("password");
+    console.log({ name, password });
+  };
+
   return (
     <section
       style={{ backgroundImage: `url(${authBg})` }}
@@ -30,13 +38,14 @@ const LoginPage = () => {
       <div className="container-center flex items-center gap-10">
         <div className="form lg:min-w-[550px]">
           <h2 className="mb-6 text-center text-2xl font-bold">Login</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block">Email</label>
               <input
                 type="email"
                 className="w-full rounded border px-3 py-2"
-                placeholder="Type here"
+                placeholder="Enter email"
+                name="email"
               />
             </div>
             <div className="mb-4">
@@ -45,6 +54,7 @@ const LoginPage = () => {
                 type="password"
                 className="w-full rounded border px-3 py-2"
                 placeholder="Enter your password"
+                name="password"
               />
             </div>
             <div className="mb-4">
