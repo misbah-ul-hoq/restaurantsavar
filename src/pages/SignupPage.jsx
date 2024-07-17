@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import signupIllustrator from "../assets/others/authentication2.png";
 import authBg from "../assets/others/authentication.png";
-const SignupForm = () => {
+const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
@@ -146,4 +146,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignupPage;
