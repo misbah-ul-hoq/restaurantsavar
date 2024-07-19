@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { generateCaptcha } from "../functions/captcha";
 import authBg from "../assets/others/authentication.png";
 import auth2 from "../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const LoginPage = () => {
-  // const { captchaImage, captchaText } = generateCaptcha();
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const [userCaptcha, setUserCaptcha] = useState(null);
   const [disabled, setDisabled] = useState(true);
+  const { emailLogIn, googleLogin } = useContext(AuthContext);
   useEffect(() => {
     if (userCaptcha == captcha.captchaText) {
       setDisabled(false);
@@ -22,12 +23,20 @@ const LoginPage = () => {
     setDisabled(true);
   };
 
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(() => {})
+      .catch(() => {});
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
-    const name = form.get("email");
+    const email = form.get("email");
     const password = form.get("password");
-    console.log({ name, password });
+    emailLogIn(email, password)
+      .then(() => {})
+      .catch(() => {});
   };
 
   return (
@@ -35,8 +44,8 @@ const LoginPage = () => {
       style={{ backgroundImage: `url(${authBg})` }}
       className="flex min-h-screen items-center justify-center"
     >
-      <div className="container-center flex items-center gap-10">
-        <div className="form lg:min-w-[550px]">
+      <div className="container-center flex flex-col items-center gap-10 lg:flex-row">
+        <div className="form w-full lg:w-auto lg:min-w-[550px]">
           <h2 className="mb-6 text-center text-2xl font-bold">Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -90,6 +99,12 @@ const LoginPage = () => {
               Sign In
             </button>
           </form>
+          <button
+            className="btn btn-primary btn-block mt-5"
+            onClick={handleGoogleLogin}
+          >
+            Login with google
+          </button>
           <p className="mt-4 text-center">
             New here?
             <Link to="/signup" className="pl-3 text-yellow-500 underline">

@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import signupIllustrator from "../assets/others/authentication2.png";
 import authBg from "../assets/others/authentication.png";
+import { AuthContext } from "../providers/AuthProvider";
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
+  const { googleLogin, emailSignUp } = useContext(AuthContext);
+
+  const hanleGoogleLogin = () => {
+    googleLogin()
+      .then(() => {})
+      .catch(() => {});
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -12,8 +21,13 @@ const SignupPage = () => {
     const email = form.get("email");
     const password = form.get("password");
 
+    emailSignUp(email, password)
+      .then(() => {})
+      .catch(() => {});
+
     console.log({ name, email, password });
   };
+
   return (
     <section style={{ backgroundImage: `url(${authBg})` }} className="min-h-">
       <div className="container-center grid items-center gap-5 py-8 md:py-16 lg:grid-cols-2">
@@ -24,7 +38,10 @@ const SignupPage = () => {
         <div className="flex items-center justify-center">
           <div className="w-full max-w-md space-y-6 rounded-lg">
             <h2 className="text-center text-3xl font-extrabold">Signup</h2>
-            <button className="btn btn-primary mt-2 w-full rounded-lg py-2 font-semibold text-white">
+            <button
+              className="btn btn-primary mt-2 w-full rounded-lg py-2 font-semibold text-white"
+              onClick={hanleGoogleLogin}
+            >
               <div className="flex items-center justify-center">
                 <img
                   src="/google.svg"
