@@ -1,15 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { generateCaptcha } from "../functions/captcha";
 import authBg from "../assets/others/authentication.png";
 import auth2 from "../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import useDocumentTitle from "dynamic-title-react";
+import generateCaptcha from "captcha-generator-react";
 
 const LoginPage = () => {
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const [userCaptcha, setUserCaptcha] = useState(null);
   const [disabled, setDisabled] = useState(true);
   const { emailLogIn, googleLogin } = useContext(AuthContext);
+  useDocumentTitle("Login page");
   useEffect(() => {
     if (userCaptcha == captcha.captchaText) {
       setDisabled(false);
@@ -19,7 +21,7 @@ const LoginPage = () => {
   }, [userCaptcha, captcha.captchaText]);
 
   const reloadCaptcha = () => {
-    setCaptcha(generateCaptcha());
+    setCaptcha(generateCaptcha(7));
     setDisabled(true);
   };
 
