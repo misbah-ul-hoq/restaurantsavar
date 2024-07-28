@@ -1,17 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import authBg from "../assets/others/authentication.png";
 import auth2 from "../assets/others/authentication2.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import useDocumentTitle from "dynamic-title-react";
 import generateCaptcha from "captcha-generator-react";
 
 const LoginPage = () => {
+  useDocumentTitle("Login");
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const [userCaptcha, setUserCaptcha] = useState(null);
   const [disabled, setDisabled] = useState(true);
   const { emailLogIn, googleLogin } = useContext(AuthContext);
-  useDocumentTitle("Login page");
+  const navigate = useNavigate();
+  const from = useLocation().state.from.pathname || "/";
+  console.log(from);
+
   useEffect(() => {
     if (userCaptcha == captcha.captchaText) {
       setDisabled(false);
@@ -21,13 +25,15 @@ const LoginPage = () => {
   }, [userCaptcha, captcha.captchaText]);
 
   const reloadCaptcha = () => {
-    setCaptcha(generateCaptcha(7));
+    setCaptcha(generateCaptcha());
     setDisabled(true);
   };
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then(() => {})
+      .then(() => {
+        navigate(from);
+      })
       .catch(() => {});
   };
 
@@ -37,7 +43,9 @@ const LoginPage = () => {
     const email = form.get("email");
     const password = form.get("password");
     emailLogIn(email, password)
-      .then(() => {})
+      .then(() => {
+        navigate(from);
+      })
       .catch(() => {});
   };
 

@@ -25,7 +25,7 @@ const SignupPage = () => {
       .then(() => {})
       .catch(() => {});
 
-    console.log({ name, email, password });
+    // console.log({ name, email, password });
   };
 
   return (
@@ -37,7 +37,7 @@ const SignupPage = () => {
 
         <div className="flex items-center justify-center">
           <div className="w-full max-w-md space-y-6 rounded-lg">
-            <h2 className="text-center text-3xl font-extrabold">Signup</h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold">Signup</h2>
             <button
               className="btn btn-primary mt-2 w-full rounded-lg py-2 font-semibold text-white"
               onClick={hanleGoogleLogin}
@@ -62,7 +62,7 @@ const SignupPage = () => {
                   id="name"
                   name="name"
                   placeholder="What should we call you?"
-                  className="mt-1 block w-full rounded-lg border bg-base-200 px-4 py-2"
+                  className="input input-bordered mt-1 block w-full rounded-lg bg-base-200 px-4 py-2"
                   required
                 />
               </div>
@@ -75,7 +75,7 @@ const SignupPage = () => {
                   id="email"
                   name="email"
                   placeholder="Enter your email"
-                  className="mt-1 block w-full rounded-lg border bg-base-200 px-4 py-2"
+                  className="input input-bordered mt-1 block w-full rounded-lg bg-base-200 px-4 py-2"
                   required
                 />
               </div>
@@ -88,7 +88,7 @@ const SignupPage = () => {
                   id="password"
                   name="password"
                   placeholder="Enter your password"
-                  className="mt-1 block w-full rounded-lg border border-gray-300 bg-base-200 px-4 py-2"
+                  className="input input-bordered mt-1 block w-full rounded-lg bg-base-200 px-4 py-2"
                   required
                   onChange={(e) => {
                     setPassword(e.target.value);
@@ -137,7 +137,7 @@ const SignupPage = () => {
                   type="text"
                   id="photoURL"
                   placeholder="Enter your photoURL"
-                  className="mt-1 block w-full rounded-lg border bg-base-200 px-4 py-2"
+                  className="input input-bordered mt-1 block w-full rounded-lg bg-base-200 px-4 py-2"
                 />
               </div>
               <button
