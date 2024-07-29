@@ -4,6 +4,7 @@ import signupIllustrator from "../assets/others/authentication2.png";
 import authBg from "../assets/others/authentication.png";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import api from "../api/api";
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -13,7 +14,10 @@ const SignupPage = () => {
 
   const hanleGoogleLogin = () => {
     googleLogin()
-      .then(() => {})
+      .then((result) => {
+        const user = result.user;
+        api.post("/users", user);
+      })
       .catch(() => {});
   };
 
@@ -27,6 +31,11 @@ const SignupPage = () => {
 
     emailSignUp(email, password)
       .then(() => {
+        api.post("/users", {
+          name,
+          email,
+          password,
+        });
         updateUser(name, photoURL).then(() => {
           Swal.fire({
             title: "Signup Successfull",

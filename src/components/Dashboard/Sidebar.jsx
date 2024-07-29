@@ -5,6 +5,7 @@ import { MdManageAccounts } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const DashboardSidebar = () => {
+  const isAdmin = true;
   return (
     <aside className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -30,52 +31,54 @@ const DashboardSidebar = () => {
             <img src="/logo.svg" alt="" className="mb-10 mt-10" />
           </div>
 
-          <li className="pb-2">
-            <NavLink to="/dashboard/carts">
-              <span>
-                <FaHome />
-              </span>{" "}
-              Admin Home
-            </NavLink>
-          </li>
-
-          <li className="pb-2">
-            <NavLink to="/dashboard/add-items">
-              <span>
-                <ImSpoonKnife />
-              </span>{" "}
-              Add Items
-            </NavLink>
-          </li>
-
-          <li className="pb-2">
-            <NavLink to="/dashboard/manage-items">
-              <span>
-                <MdManageAccounts />
-              </span>{" "}
-              Manage Items
-            </NavLink>
-          </li>
-
-          <li className="pb-2">
-            <NavLink to="/dashboard/manage-bookings">
-              <span>
-                <FaBook />
-              </span>{" "}
-              Manage Bookings
-            </NavLink>
-          </li>
-
-          <li className="pb-2">
-            <NavLink to="/dashboard/all-users">
-              <span>
-                <FaBook />
-              </span>{" "}
-              All Users
-            </NavLink>
-          </li>
-
-          <span className="divider divider-primary"></span>
+          {isAdmin ? (
+            <>
+              {" "}
+              <li className="pb-2">
+                <NavLink to="/dashboard/carts">
+                  <span>
+                    <FaHome />
+                  </span>{" "}
+                  Admin Home
+                </NavLink>
+              </li>
+              <li className="pb-2">
+                <NavLink to="/dashboard/add-items">
+                  <span>
+                    <ImSpoonKnife />
+                  </span>{" "}
+                  Add Items
+                </NavLink>
+              </li>
+              <li className="pb-2">
+                <NavLink to="/dashboard/manage-items">
+                  <span>
+                    <MdManageAccounts />
+                  </span>{" "}
+                  Manage Items
+                </NavLink>
+              </li>
+              <li className="pb-2">
+                <NavLink to="/dashboard/manage-bookings">
+                  <span>
+                    <FaBook />
+                  </span>{" "}
+                  Manage Bookings
+                </NavLink>
+              </li>
+              <li className="pb-2">
+                <NavLink to="/dashboard/all-users">
+                  <span>
+                    <FaBook />
+                  </span>{" "}
+                  All Users
+                </NavLink>
+              </li>
+              <span className="divider divider-primary"></span>
+            </>
+          ) : (
+            <></>
+          )}
 
           <li className="pb-2">
             <NavLink to="/" className="text-base">

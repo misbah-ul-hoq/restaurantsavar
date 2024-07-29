@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage";
 import Dashboard from "./pages/Layout/Dashboard";
 import DashboardCarts from "./pages/Dashboard/Carts";
 import PrivateRoute from "./pages/PrivateRoute";
+import ManageItems from "./pages/Dashboard/ManageItems";
 
 const routes = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const routes = createBrowserRouter([
       {
         path: "carts",
         element: <DashboardCarts />,
+      },
+      {
+        path: "manage-items",
+        element: <ManageItems />,
       },
     ],
   },
