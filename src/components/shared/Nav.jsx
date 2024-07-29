@@ -108,13 +108,15 @@ const Nav = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      <div className="navbar-end">
-        <img
-          src={user?.photoURL || ""}
-          className="h-11 w-11 rounded-full"
-          alt="userr img"
-        />
-      </div>
+      {user && (
+        <div className="navbar-end">
+          <img
+            src={user?.photoURL || ""}
+            className="h-11 w-11 rounded-full"
+            alt="userr img"
+          />
+        </div>
+      )}
     </div>
   );
 };
