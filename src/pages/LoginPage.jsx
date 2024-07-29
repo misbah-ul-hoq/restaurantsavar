@@ -13,8 +13,9 @@ const LoginPage = () => {
   const [disabled, setDisabled] = useState(true);
   const { emailLogIn, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
-  const from = useLocation().state.from.pathname || "/";
-  console.log(from);
+  const from = useLocation().state?.from?.pathname || "/";
+  // console.log(useLocation());
+  // console.log(from);
 
   useEffect(() => {
     if (userCaptcha == captcha.captchaText) {

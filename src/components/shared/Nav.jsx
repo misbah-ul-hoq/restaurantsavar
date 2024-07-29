@@ -1,6 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import useCart from "../../hooks/useCart";
 
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const { cart } = useCart();
+
   const navLinks = (
     <>
       <li>
@@ -22,10 +30,34 @@ const Nav = () => {
       </li>
 
       <li>
-        <NavLink to="/login" className="text-base font-extrabold uppercase">
-          Login
-        </NavLink>
+        <button className="text-base font-extrabold uppercase">
+          Cart
+          <div className="badge badge-secondary">+{cart.length}</div>
+        </button>
       </li>
+
+      {!user && (
+        <li>
+          <NavLink to="/login" className="text-base font-extrabold uppercase">
+            Login
+          </NavLink>
+        </li>
+      )}
+
+      {user && (
+        <li
+          onClick={() => {
+            logOut().then(() => {
+              Swal.fire({
+                title: "Signout successfull",
+                icon: "success",
+              });
+            });
+          }}
+        >
+          <Link className="text-base font-extrabold uppercase">Logout</Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -77,7 +109,11 @@ const Nav = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <img
+          src={user?.photoURL || ""}
+          className="h-11 w-11 rounded-full"
+          alt="userr img"
+        />
       </div>
     </div>
   );

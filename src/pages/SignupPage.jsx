@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signupIllustrator from "../assets/others/authentication2.png";
 import authBg from "../assets/others/authentication.png";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
-  const { googleLogin, emailSignUp } = useContext(AuthContext);
+  const { googleLogin, emailSignUp, updateUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const hanleGoogleLogin = () => {
     googleLogin()
@@ -20,9 +23,22 @@ const SignupPage = () => {
     const name = form.get("name");
     const email = form.get("email");
     const password = form.get("password");
+    const photoURL = form.get("photoURL");
 
     emailSignUp(email, password)
-      .then(() => {})
+      .then(() => {
+        updateUser(name, photoURL).then(() => {
+          Swal.fire({
+            title: "Signup Successfull",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/login");
+            }
+          });
+        });
+      })
       .catch(() => {});
 
     // console.log({ name, email, password });
@@ -136,6 +152,7 @@ const SignupPage = () => {
                 <input
                   type="text"
                   id="photoURL"
+                  name="photoURL"
                   placeholder="Enter your photoURL"
                   className="input input-bordered mt-1 block w-full rounded-lg bg-base-200 px-4 py-2"
                 />
@@ -147,6 +164,7 @@ const SignupPage = () => {
                 Create account
               </button>
             </form>
+
             <p className="mt-4 text-center text-sm">
               Already a member?{" "}
               <Link
