@@ -30,10 +30,13 @@ const Nav = () => {
       </li>
 
       <li>
-        <button className="text-base font-extrabold uppercase">
+        <Link
+          to="/dashboard/carts"
+          className="text-base font-extrabold uppercase"
+        >
           Cart
           <div className="badge badge-secondary">+{cart.length}</div>
-        </button>
+        </Link>
       </li>
 
       {!user && (
@@ -55,7 +58,7 @@ const Nav = () => {
             });
           }}
         >
-          <Link className="text-base font-extrabold uppercase">Logout</Link>
+          <button className="text-base font-extrabold uppercase">Logout</button>
         </li>
       )}
     </>

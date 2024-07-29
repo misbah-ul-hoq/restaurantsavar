@@ -34,6 +34,8 @@ const OrderCard = ({ menuItem }) => {
                   cartId: _id,
                   name,
                   image,
+                  recipe,
+                  price,
                   email: user?.email,
                 })
                 .then((res) => {
