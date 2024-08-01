@@ -5,6 +5,7 @@ import authBg from "../assets/others/authentication.png";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import api from "../api/api";
+
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -32,7 +33,7 @@ const SignupPage = () => {
     emailSignUp(email, password)
       .then(() => {
         api.post("/users", {
-          name,
+          displayName: name,
           email,
           password,
         });
@@ -49,8 +50,6 @@ const SignupPage = () => {
         });
       })
       .catch(() => {});
-
-    // console.log({ name, email, password });
   };
 
   return (

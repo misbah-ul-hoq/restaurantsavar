@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import useDocumentTitle from "dynamic-title-react";
 import generateCaptcha from "captcha-generator-react";
+import api from "../api/api";
 
 const LoginPage = () => {
   useDocumentTitle("Login");
@@ -32,7 +33,9 @@ const LoginPage = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then(() => {
+      .then((result) => {
+        const user = result.user;
+        api.post("/users", user);
         navigate(from);
       })
       .catch(() => {});
