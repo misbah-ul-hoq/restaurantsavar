@@ -9,6 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../firebase.config";
+import api from "../api/api";
 const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext(null);
 
@@ -45,6 +46,14 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        api.post("/jwt", userInfo).then((res) => {
+          localStorage.setItem("access-token", res.data.token);
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
     return () => unsubscribe();

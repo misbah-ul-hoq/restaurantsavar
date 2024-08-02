@@ -10,7 +10,9 @@ const useUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const result = await api.get("/users");
+      const result = await api.get("/users", {
+        headers: { authorization: `${localStorage.getItem("access-token")}` },
+      });
       return result.data;
     },
   });

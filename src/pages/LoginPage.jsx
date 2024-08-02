@@ -35,7 +35,7 @@ const LoginPage = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-        api.post("/users", user);
+        api.post("/users", { ...user, isAdmin: false });
         navigate(from);
       })
       .catch(() => {});
@@ -47,7 +47,14 @@ const LoginPage = () => {
     const email = form.get("email");
     const password = form.get("password");
     emailLogIn(email, password)
-      .then(() => {
+      .then((userCredential) => {
+        const user = userCredential.user;
+        api.post("/users", {
+          email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          isAdmin: false,
+        });
         navigate(from);
       })
       .catch(() => {});
