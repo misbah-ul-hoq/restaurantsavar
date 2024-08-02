@@ -3,10 +3,15 @@ import { FaBook, FaHome } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
 import { MdManageAccounts } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
 
 const DashboardSidebar = () => {
-  const isAdmin = true;
-  return (
+  const { isAdmin, isLoading } = useAdmin();
+  console.log("admin? " + isAdmin, "loading? " + isLoading);
+
+  return isLoading ? (
+    <span className="loading loading-ring loading-lg"></span>
+  ) : (
     <aside className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
