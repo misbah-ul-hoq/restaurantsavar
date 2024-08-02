@@ -15,6 +15,7 @@ const LoginPage = () => {
   const { emailLogIn, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const from = useLocation().state?.from?.pathname || "/";
+  console.log(from);
   // console.log(useLocation());
   // console.log(from);
 
