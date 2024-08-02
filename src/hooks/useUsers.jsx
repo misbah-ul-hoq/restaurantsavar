@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "../api/api";
+import useAxiosSecure from "../api/useAxiosSecure";
 
 const useUsers = () => {
+  const { axiosSecure } = useAxiosSecure();
   const {
     isPending,
     error,
@@ -10,9 +11,7 @@ const useUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const result = await api.get("/users", {
-        headers: { authorization: `${localStorage.getItem("access-token")}` },
-      });
+      const result = await axiosSecure.get("/users");
       return result.data;
     },
   });
