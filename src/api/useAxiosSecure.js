@@ -25,12 +25,12 @@ const useAxiosSecure = () => {
     (response) => {
       // response.push("this is custom response pushed from interceptor");
       response.custom = "custom property from interceptor in axios";
-      console.log(response);
+      // console.log(response);
       return response;
     },
     (error) => {
       const status = error.response.status;
-      console.log(status);
+      // console.log(status);
       if (status == 401 || status == 403) {
         logOut();
         navigate("/login");
