@@ -7,7 +7,7 @@ import useAdmin from "../../hooks/useAdmin";
 
 const DashboardSidebar = () => {
   const { isAdmin, isLoading } = useAdmin();
-  console.log("admin? " + isAdmin, "loading? " + isLoading);
+  // console.log("admin? " + isAdmin, "loading? " + isLoading);
 
   return isLoading ? (
     <span className="loading loading-ring loading-lg"></span>

@@ -1,21 +1,45 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../components/Home/SectionTitle";
 import axios from "axios";
+import useAxiosSecure from "../../api/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_KEY;
 const imgApiUrl = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItems = () => {
   const { register, handleSubmit } = useForm();
+  const { axiosSecure } = useAxiosSecure();
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     const image = { image: data.image[0] };
     const response = await axios.post(imgApiUrl, image, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response);
+    const menuItem = {
+      name: data["recipe-name"],
+      recipe: data["recipe-details"],
+      image: response.data.data.display_url,
+      category: data["category"],
+      price: parseFloat(data["price"]),
+    };
+    if (response.data.success) {
+      //
+      axiosSecure.post("/menu", menuItem).then((res) => {
+        if (res.data.acknowledged) {
+          Swal.fire({
+            icon: "success",
+            title: "Your menu has been saved",
+            showConfirmButton: true,
+            timer: 2000,
+          });
+        }
+      });
+      console.log(menuItem);
+    }
+    // console.log(response);
   };
   return (
     <section className="add-items-page">
@@ -50,8 +74,9 @@ const AddItems = () => {
               <select
                 className="select select-bordered w-full"
                 {...register("category")}
+                defaultValue=""
               >
-                <option selected>select a category</option>
+                <option>select a category</option>
                 <option value="salad">Salad</option>
                 <option value="pizza">Pizza</option>
                 <option value="soup">Soup</option>
