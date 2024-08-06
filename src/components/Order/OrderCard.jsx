@@ -29,25 +29,46 @@ const OrderCard = ({ menuItem }) => {
               });
             }
             if (user) {
-              api
-                .post("/carts", {
+              fetch("https://tastyfoods-api.vercel.app/carts", {
+                method: "POST",
+                body: JSON.stringify({
                   cartId: _id,
                   name,
                   image,
                   recipe,
                   price,
                   email: user?.email,
-                })
+                }),
+                headers: {
+                  "content-type": "application/json",
+                },
+              })
+                .then((res) => res.json())
                 .then((res) => {
-                  // console.log(res.data);
-                  if (res.data.insertedId) {
-                    Swal.fire({
-                      title: `${name} added to cart`,
-                      icon: "success",
-                    });
-                    refetch();
-                  }
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.log(err);
                 });
+              // api
+              //   .post("/carts", {
+              //     cartId: _id,
+              //     name,
+              //     image,
+              //     recipe,
+              //     price,
+              //     email: user?.email,
+              //   })
+              //   .then((res) => {
+              //     // console.log(res.data);
+              //     if (res.data.insertedId) {
+              //       Swal.fire({
+              //         title: `${name} added to cart`,
+              //         icon: "success",
+              //       });
+              //       refetch();
+              //     }
+              //   });
             }
           }}
           className="btn border-0 border-b-2 border-[#BB8506] text-[#BB8506] hover:btn-neutral"

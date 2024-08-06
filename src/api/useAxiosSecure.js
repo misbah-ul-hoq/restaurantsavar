@@ -4,7 +4,8 @@ import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:8080",
+  // baseURL: "http://localhost:8080",
+  baseURL: "https://tastyfoods-api.vercel.app",
 });
 
 const useAxiosSecure = () => {
@@ -24,7 +25,6 @@ const useAxiosSecure = () => {
   axiosSecure.interceptors.response.use(
     (response) => {
       // response.push("this is custom response pushed from interceptor");
-      response.custom = "custom property from interceptor in axios";
       // console.log(response);
       return response;
     },
@@ -32,7 +32,7 @@ const useAxiosSecure = () => {
       const status = error.response.status;
       // console.log(status);
       if (status == 401 || status == 403) {
-        logOut();
+        // logOut();
         navigate("/login");
       }
       return new Error(error);
